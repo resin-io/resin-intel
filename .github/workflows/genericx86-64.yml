@@ -1,4 +1,4 @@
-name: Generic x86_64 (legacy MBR)
+name: Generic x86_64 (legacy MBR) (No KVM)
 
 on:
   # With these triggers the Yocto jobs will run
@@ -36,11 +36,18 @@ jobs:
       machine: genericx86-64-ext
       # Needed for testing - defaults to production
       environment: balena-staging.com
+
+      # Don't deploy anything, I am interested only in the tests really
+      deploy-ami: false
+      deploy-esr: false
+      deploy-s3: false
+      deploy-hostapp: false
+
       # Use qemu workers for testing
       test_matrix: >
         {
           "test_suite": ["os","cloud","hup"],
           "environment": ["bm.balena-dev.com"],
           "worker_type": ["qemu"],
-          "runs_on": [["self-hosted", "X64", "kvm"]]
+          "runs_on": [["ubuntu-latest"]]
         }
