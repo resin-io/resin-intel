@@ -21,6 +21,13 @@ BALENA_BOOT_PARTITION_FILES = " \
     grub_extraenv:/EFI/BOOT/grub_extraenv \
     "
 
+# virtio-x86 only supports PC/MBR booting
+BALENA_IMAGE_BOOTLOADER:remove:virtio-x86 = "grub-efi"
+BALENA_BOOT_PARTITION_FILES:remove:x86 = " \
+    grub-efi-bootx64.efi:/EFI/BOOT/bootx64.efi \
+    grub/x86_64-efi:/EFI/BOOT/x86_64-efi/ \
+    "
+
 write_mbr() {
     # Write MBR with first stage bootloader
     dd if=${DEPLOY_DIR_IMAGE}/grub/boot.img of=${BALENA_RAW_IMG} conv=notrunc bs=1

@@ -3,6 +3,7 @@
 #MACHINE ?= "genericx86-64-ext"
 #MACHINE ?= "surface-go"
 #MACHINE ?= "surface-pro-6"
+#MACHINE ?= "virtio-x86"
 
 # More info meta-resin/README.md
 #TARGET_REPOSITORY ?= ""

@@ -19,6 +19,21 @@ SRC_URI:append:genericx86-64-ext = " \
     file://defconfig \
 "
 
+SRC_URI:append:virtio-x86 = " \
+    file://defconfig \
+"
+
+BALENA_CONFIGS:remove:virtio-x86 = " \
+    brcmfmac \
+    ralink \
+    rtl8192cu \
+    r8188eu \
+    hid-multitouch \
+    apple_hfs \
+    mdraid \
+    dmcrypt \
+"
+
 do_kernel_configme[depends] += "virtual/${TARGET_PREFIX}binutils:do_populate_sysroot"
 do_kernel_configme[depends] += "virtual/${TARGET_PREFIX}gcc:do_populate_sysroot"
 do_kernel_configme[depends] += "bc-native:do_populate_sysroot bison-native:do_populate_sysroot"
@@ -71,6 +86,7 @@ BALENA_CONFIGS[nvme] = " \
 # Support Intel wrieless LAN adapter
 #
 BALENA_CONFIGS:append = " iwlwifi"
+BALENA_CONFIGS:remove:virtio-x86 = "iwlwifi"
 BALENA_CONFIGS_DEPS[iwlwifi] = " \
     CONFIG_PCI=m \
     CONFIG_MAC80211=m \
@@ -190,6 +206,7 @@ BALENA_CONFIGS:append:genericx86-64-ext = " aufs"
 
 # Add CAN support (requested by customer)
 BALENA_CONFIGS:append = " enable_can"
+BALENA_CONFIGS:remove:virtio-x86 = "enable_can"
 BALENA_CONFIGS[enable_can] = " \
     CONFIG_CAN=m \
     CONFIG_CAN_DEV=m \
@@ -198,6 +215,7 @@ BALENA_CONFIGS[enable_can] = " \
 "
 
 BALENA_CONFIGS:append = " huawei_modems"
+BALENA_CONFIGS:remove:virtio-x86 = "huawei_modems"
 BALENA_CONFIGS_DEPS[huawei_modems] = " \
     CONFIG_USB_SERIAL_OPTION=m \
     CONFIG_USB_USBNET=m \
@@ -285,6 +303,7 @@ BALENA_CONFIGS[uinput] = " \
 "
 
 BALENA_CONFIGS:append = " ath10k_pci"
+BALENA_CONFIGS:remove:virtio-x86 = "ath10k_pci"
 BALENA_CONFIGS_DEPS[ath10k_pci] = " \
     CONFIG_ATH10K=m \
 "
@@ -293,6 +312,7 @@ BALENA_CONFIGS[ath10k_pci] = " \
 "
 
 BALENA_CONFIGS:append = " mmc_realtek_pci"
+BALENA_CONFIGS:remove:virtio-x86 = "mmc_realtek_pci"
 BALENA_CONFIGS_DEPS[mmc_realtek_pci] = " \
     CONFIG_MISC_RTSX_PCI=m \
 "
@@ -316,6 +336,7 @@ BALENA_CONFIGS_DEPS[touchscreen_surfaces] = " \
 "
 
 BALENA_CONFIGS:append = " tpm"
+BALENA_CONFIGS:remove:virtio-x86 = "tpm"
 BALENA_CONFIGS_DEPS[tpm] = " \
     CONFIG_HW_RANDOM_TPM=y \
     CONFIG_SECURITYFS=y \

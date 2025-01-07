@@ -11,3 +11,4 @@ IMAGE_INSTALL:append:genericx86-64-ext =" \
 "
 
 IMAGE_ROOTFS_SIZE:genericx86-64-ext = "1024000"
+IMAGE_ROOTFS_SIZE:virtio-x86 = "1024000"
